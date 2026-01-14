@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from "@tanstack/solid-router";
 import { Show } from "solid-js";
 
-export const Route = createFileRoute("/linkding")({
+export const Route = createFileRoute("/chat")({
    beforeLoad: ({ context }) => {
       if (!context.session) {
          throw redirect({ to: "/login" });

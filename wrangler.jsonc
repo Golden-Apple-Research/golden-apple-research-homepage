@@ -6,6 +6,11 @@
    "main": "@tanstack/solid-start/server-entry",
    "vars": {
       "MY_VAR": "Hello from Cloudflare",
+      "AUTH_KEYCLOAK_ID": "18d43b5b-1c11-4638-816a-17299381b0f2",
+      "AUTH_KEYCLOAK_ISSUER": "https://auth.golden-apple-research.org/realms/staging",
+      "AUTH_KEYCLOAK_SECRET": "",
+      "AUTH_URL": "https://www.golden-apple-research.org/api/auth",
+      "AUTH_SECRET": "",
    },
    "observability": {
       "traces": {

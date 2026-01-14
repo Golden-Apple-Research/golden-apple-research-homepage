@@ -14,8 +14,10 @@ import { Route as RedirectRouteImport } from './routes/redirect'
 import { Route as ProtectedRouteImport } from './routes/protected'
 import { Route as PostsRouteImport } from './routes/posts'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LinkdingRouteImport } from './routes/linkding'
 import { Route as DeferredRouteImport } from './routes/deferred'
 import { Route as CustomScriptDotjsRouteImport } from './routes/customScript[.]js'
+import { Route as ChatRouteImport } from './routes/chat'
 import { Route as PathlessLayoutRouteImport } from './routes/_pathlessLayout'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UsersIndexRouteImport } from './routes/users.index'
@@ -55,6 +57,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LinkdingRoute = LinkdingRouteImport.update({
+  id: '/linkding',
+  path: '/linkding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DeferredRoute = DeferredRouteImport.update({
   id: '/deferred',
   path: '/deferred',
@@ -63,6 +70,11 @@ const DeferredRoute = DeferredRouteImport.update({
 const CustomScriptDotjsRoute = CustomScriptDotjsRouteImport.update({
   id: '/customScript.js',
   path: '/customScript.js',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PathlessLayoutRoute = PathlessLayoutRouteImport.update({
@@ -134,8 +146,10 @@ const PathlessLayoutNestedLayoutRouteARoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/customScript.js': typeof CustomScriptDotjsRoute
   '/deferred': typeof DeferredRoute
+  '/linkding': typeof LinkdingRoute
   '/login': typeof LoginRoute
   '/posts': typeof PostsRouteWithChildren
   '/protected': typeof ProtectedRoute
@@ -154,8 +168,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/customScript.js': typeof CustomScriptDotjsRoute
   '/deferred': typeof DeferredRoute
+  '/linkding': typeof LinkdingRoute
   '/login': typeof LoginRoute
   '/protected': typeof ProtectedRoute
   '/redirect': typeof RedirectRoute
@@ -174,8 +190,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_pathlessLayout': typeof PathlessLayoutRouteWithChildren
+  '/chat': typeof ChatRoute
   '/customScript.js': typeof CustomScriptDotjsRoute
   '/deferred': typeof DeferredRoute
+  '/linkding': typeof LinkdingRoute
   '/login': typeof LoginRoute
   '/posts': typeof PostsRouteWithChildren
   '/protected': typeof ProtectedRoute
@@ -197,8 +215,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/chat'
     | '/customScript.js'
     | '/deferred'
+    | '/linkding'
     | '/login'
     | '/posts'
     | '/protected'
@@ -217,8 +237,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/chat'
     | '/customScript.js'
     | '/deferred'
+    | '/linkding'
     | '/login'
     | '/protected'
     | '/redirect'
@@ -236,8 +258,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_pathlessLayout'
+    | '/chat'
     | '/customScript.js'
     | '/deferred'
+    | '/linkding'
     | '/login'
     | '/posts'
     | '/protected'
@@ -259,8 +283,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PathlessLayoutRoute: typeof PathlessLayoutRouteWithChildren
+  ChatRoute: typeof ChatRoute
   CustomScriptDotjsRoute: typeof CustomScriptDotjsRoute
   DeferredRoute: typeof DeferredRoute
+  LinkdingRoute: typeof LinkdingRoute
   LoginRoute: typeof LoginRoute
   PostsRoute: typeof PostsRouteWithChildren
   ProtectedRoute: typeof ProtectedRoute
@@ -308,6 +334,13 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/linkding': {
+      id: '/linkding'
+      path: '/linkding'
+      fullPath: '/linkding'
+      preLoaderRoute: typeof LinkdingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/deferred': {
       id: '/deferred'
       path: '/deferred'
@@ -320,6 +353,13 @@ declare module '@tanstack/solid-router' {
       path: '/customScript.js'
       fullPath: '/customScript.js'
       preLoaderRoute: typeof CustomScriptDotjsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_pathlessLayout': {
@@ -485,8 +525,10 @@ const ApiUsersRouteWithChildren = ApiUsersRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PathlessLayoutRoute: PathlessLayoutRouteWithChildren,
+  ChatRoute: ChatRoute,
   CustomScriptDotjsRoute: CustomScriptDotjsRoute,
   DeferredRoute: DeferredRoute,
+  LinkdingRoute: LinkdingRoute,
   LoginRoute: LoginRoute,
   PostsRoute: PostsRouteWithChildren,
   ProtectedRoute: ProtectedRoute,

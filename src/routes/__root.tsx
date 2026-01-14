@@ -64,16 +64,16 @@ export const Route = createRootRouteWithContext<RouterContext>()({
             rel: "icon",
             type: "image/png",
             sizes: "32x32",
-            href: "/favicon-32x32.png",
+            href: "/golden-favicon-32x32.png",
          },
          {
             rel: "icon",
             type: "image/png",
             sizes: "16x16",
-            href: "/favicon-16x16.png",
+            href: "/golden-favicon-16x16.png",
          },
          { rel: "manifest", href: "/site.webmanifest", color: "#fffff" },
-         { rel: "icon", href: "/favicon.ico" },
+         { rel: "icon", href: "/golden-favicon.ico" },
       ],
       scripts: [
          {
@@ -136,12 +136,24 @@ function NavBar({ children }: { children?: any }) {
                </Link>
             }
          >
-            <a
-               href="/protected"
+            <Link
+               to="/chat"
+               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+               Chat
+            </Link>
+            <Link
+               to="/linkding"
+               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+               Chat
+            </Link>
+            <Link
+               to="/protected"
                class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
             >
                {routeContext().session?.user?.email}{" "}
-            </a>
+            </Link>
          </Show>
       </div>
    );

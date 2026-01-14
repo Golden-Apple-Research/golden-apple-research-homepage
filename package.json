@@ -13,9 +13,10 @@
    },
    "dependencies": {
       "@auth/core": "^0.41.1",
+      "@datastax/langflow-client": "^0.4.1",
       "@tanstack/solid-router": "^1.145.7",
-      "@tanstack/solid-router-devtools": "^1.145.7",
       "@tanstack/solid-start": "^1.145.7",
+      "@tanstack/solid-virtual": "^3.13.18",
       "solid-icons": "^1.1.0",
       "solid-js": "^1.9.10",
       "start-authjs": "^1.0.2"
@@ -23,6 +24,11 @@
    "devDependencies": {
       "@cloudflare/vite-plugin": "^1.13.7",
       "@tailwindcss/vite": "^4.1.18",
+      "@tanstack/devtools-vite": "^0.4.1",
+      "@tanstack/solid-form": "^1.27.7",
+      "@tanstack/solid-form-devtools": "^0.2.11",
+      "@tanstack/solid-query-devtools": "^5.91.2",
+      "@tanstack/solid-router-devtools": "^1.145.7",
       "@types/node": "^22.5.4",
       "tailwindcss": "^4.1.18",
       "typescript": "^5.7.2",

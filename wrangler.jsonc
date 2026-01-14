@@ -1,10 +1,22 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "golden-apple-research-homepage",
-  "compatibility_date": "2025-09-24",
-  "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/solid-start/server-entry",
-  "vars": {
-    "MY_VAR": "Hello from Cloudflare",
-  },
+   "$schema": "node_modules/wrangler/config-schema.json",
+   "name": "golden-apple-research-homepage",
+   "compatibility_date": "2025-09-24",
+   "compatibility_flags": ["nodejs_compat"],
+   "main": "@tanstack/solid-start/server-entry",
+   "vars": {
+      "MY_VAR": "Hello from Cloudflare",
+   },
+   "observability": {
+      "traces": {
+         "enabled": true,
+         // Must match the destination name in the Cloudflare dashboard
+         "destinations": ["grafana-traces"],
+      },
+      "logs": {
+         "enabled": true,
+         // Must match the destination name in the Cloudflare dashboard
+         "destinations": ["grafana-logs"],
+      },
+   },
 }

@@ -10,6 +10,8 @@ import {
 } from "@tanstack/solid-router";
 import { TanStackRouterDevtools } from "@tanstack/solid-router-devtools";
 import { HydrationScript } from "solid-js/web";
+import { createEffect, onCleanup } from "solid-js";
+import { initFlowbite } from "flowbite";
 import type * as Solid from "solid-js";
 import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary";
 import { NotFound } from "~/components/NotFound";
@@ -18,9 +20,7 @@ import { seo } from "~/utils/seo";
 import { authConfig } from "~/utils/auth";
 import { createServerFn } from "@tanstack/solid-start";
 import { getRequest } from "@tanstack/solid-start/server";
-// import { NavBar } from "~/components/NavBar";
-import { Show } from "solid-js";
-
+import { NavBar } from "~/components/NavBar";
 import { getSession } from "start-authjs";
 
 interface RouterContext {
@@ -54,7 +54,10 @@ export const Route = createRootRouteWithContext<RouterContext>()({
          }),
       ],
       links: [
-         { rel: "stylesheet", href: appCss },
+         {
+            rel: "stylesheet",
+            href: appCss,
+         },
          {
             rel: "apple-touch-icon",
             sizes: "180x180",
@@ -77,6 +80,22 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       ],
       scripts: [
          {
+            children: `
+               (function() {
+                  try {
+                     var theme = localStorage.getItem('theme');
+                     var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+                     if (!theme && supportDarkMode) theme = 'dark';
+                     if (theme === 'dark') {
+                        document.documentElement.classList.add('dark');
+                     } else {
+                        document.documentElement.classList.remove('dark');
+                     }
+                  } catch (e) {}
+               })();
+            `,
+         },
+         {
             src: "/customScript.js",
             type: "text/javascript",
          },
@@ -95,6 +114,13 @@ function RootComponent() {
    );
 }
 function RootDocument({ children }: { children: Solid.JSX.Element }) {
+   createEffect(() => {
+      const timeout = setTimeout(() => {
+         initFlowbite();
+      }, 50);
+      onCleanup(() => clearTimeout(timeout));
+   });
+
    return (
       <html>
          <head>
@@ -103,58 +129,12 @@ function RootDocument({ children }: { children: Solid.JSX.Element }) {
          <body>
             <HeadContent />
             <NavBar />
+            <div class="h-19"></div>
             <hr />
             {children}
             <TanStackRouterDevtools position="bottom-right" />
             <Scripts />
          </body>
       </html>
-   );
-}
-function NavBar({ children }: { children?: any }) {
-   const routeContext = Route.useRouteContext();
-
-   return (
-      <div class="p-2 flex gap-2 text-lg">
-         <Link
-            to="/"
-            activeProps={{
-               class: "font-bold",
-            }}
-            activeOptions={{ exact: true }}
-         >
-            Home
-         </Link>{" "}
-         <Show
-            when={routeContext().session}
-            fallback={
-               <Link
-                  to="/login"
-                  class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-               >
-                  Sign In
-               </Link>
-            }
-         >
-            <Link
-               to="/chat"
-               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-               Chat
-            </Link>
-            <Link
-               to="/linkding"
-               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-               Chat
-            </Link>
-            <Link
-               to="/protected"
-               class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-            >
-               {routeContext().session?.user?.email}{" "}
-            </Link>
-         </Show>
-      </div>
    );
 }

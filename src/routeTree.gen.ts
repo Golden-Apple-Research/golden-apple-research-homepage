@@ -11,19 +11,28 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UsersRouteImport } from './routes/users'
 import { Route as RedirectRouteImport } from './routes/redirect'
-import { Route as ProtectedRouteImport } from './routes/protected'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PostsRouteImport } from './routes/posts'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as LinkdingRouteImport } from './routes/linkding'
 import { Route as DeferredRouteImport } from './routes/deferred'
+import { Route as CustomScriptDotjscopyRouteImport } from './routes/customScript[.]js copy'
 import { Route as CustomScriptDotjsRouteImport } from './routes/customScript[.]js'
-import { Route as ChatRouteImport } from './routes/chat'
+import { Route as AppsRouteImport } from './routes/apps'
 import { Route as PathlessLayoutRouteImport } from './routes/_pathlessLayout'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UsersIndexRouteImport } from './routes/users.index'
+import { Route as ProfileIndexRouteImport } from './routes/profile/index'
 import { Route as PostsIndexRouteImport } from './routes/posts.index'
+import { Route as AppsIndexRouteImport } from './routes/apps/index'
 import { Route as UsersUserIdRouteImport } from './routes/users.$userId'
+import { Route as ProfileUserRouteImport } from './routes/profile/user'
+import { Route as ProfileLinkdingRouteImport } from './routes/profile/linkding'
+import { Route as ProfileBytestashRouteImport } from './routes/profile/bytestash'
 import { Route as PostsPostIdRouteImport } from './routes/posts.$postId'
+import { Route as AppsRocketchatRouteImport } from './routes/apps/rocketchat'
+import { Route as AppsOwuiRouteImport } from './routes/apps/owui'
+import { Route as AppsLangflowRouteImport } from './routes/apps/langflow'
+import { Route as AppsForgejoRouteImport } from './routes/apps/forgejo'
+import { Route as AppsComfyuiRouteImport } from './routes/apps/comfyui'
 import { Route as ApiUsersRouteImport } from './routes/api/users'
 import { Route as PathlessLayoutNestedLayoutRouteImport } from './routes/_pathlessLayout/_nested-layout'
 import { Route as PostsPostIdDeepRouteImport } from './routes/posts_.$postId.deep'
@@ -42,9 +51,9 @@ const RedirectRoute = RedirectRouteImport.update({
   path: '/redirect',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProtectedRoute = ProtectedRouteImport.update({
-  id: '/protected',
-  path: '/protected',
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PostsRoute = PostsRouteImport.update({
@@ -52,19 +61,14 @@ const PostsRoute = PostsRouteImport.update({
   path: '/posts',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LinkdingRoute = LinkdingRouteImport.update({
-  id: '/linkding',
-  path: '/linkding',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DeferredRoute = DeferredRouteImport.update({
   id: '/deferred',
   path: '/deferred',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomScriptDotjscopyRoute = CustomScriptDotjscopyRouteImport.update({
+  id: '/customScript.js copy',
+  path: '/customScript.js copy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CustomScriptDotjsRoute = CustomScriptDotjsRouteImport.update({
@@ -72,9 +76,9 @@ const CustomScriptDotjsRoute = CustomScriptDotjsRouteImport.update({
   path: '/customScript.js',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChatRoute = ChatRouteImport.update({
-  id: '/chat',
-  path: '/chat',
+const AppsRoute = AppsRouteImport.update({
+  id: '/apps',
+  path: '/apps',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PathlessLayoutRoute = PathlessLayoutRouteImport.update({
@@ -91,20 +95,70 @@ const UsersIndexRoute = UsersIndexRouteImport.update({
   path: '/',
   getParentRoute: () => UsersRoute,
 } as any)
+const ProfileIndexRoute = ProfileIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProfileRoute,
+} as any)
 const PostsIndexRoute = PostsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PostsRoute,
+} as any)
+const AppsIndexRoute = AppsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppsRoute,
 } as any)
 const UsersUserIdRoute = UsersUserIdRouteImport.update({
   id: '/$userId',
   path: '/$userId',
   getParentRoute: () => UsersRoute,
 } as any)
+const ProfileUserRoute = ProfileUserRouteImport.update({
+  id: '/user',
+  path: '/user',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileLinkdingRoute = ProfileLinkdingRouteImport.update({
+  id: '/linkding',
+  path: '/linkding',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileBytestashRoute = ProfileBytestashRouteImport.update({
+  id: '/bytestash',
+  path: '/bytestash',
+  getParentRoute: () => ProfileRoute,
+} as any)
 const PostsPostIdRoute = PostsPostIdRouteImport.update({
   id: '/$postId',
   path: '/$postId',
   getParentRoute: () => PostsRoute,
+} as any)
+const AppsRocketchatRoute = AppsRocketchatRouteImport.update({
+  id: '/rocketchat',
+  path: '/rocketchat',
+  getParentRoute: () => AppsRoute,
+} as any)
+const AppsOwuiRoute = AppsOwuiRouteImport.update({
+  id: '/owui',
+  path: '/owui',
+  getParentRoute: () => AppsRoute,
+} as any)
+const AppsLangflowRoute = AppsLangflowRouteImport.update({
+  id: '/langflow',
+  path: '/langflow',
+  getParentRoute: () => AppsRoute,
+} as any)
+const AppsForgejoRoute = AppsForgejoRouteImport.update({
+  id: '/forgejo',
+  path: '/forgejo',
+  getParentRoute: () => AppsRoute,
+} as any)
+const AppsComfyuiRoute = AppsComfyuiRouteImport.update({
+  id: '/comfyui',
+  path: '/comfyui',
+  getParentRoute: () => AppsRoute,
 } as any)
 const ApiUsersRoute = ApiUsersRouteImport.update({
   id: '/api/users',
@@ -146,19 +200,28 @@ const PathlessLayoutNestedLayoutRouteARoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/chat': typeof ChatRoute
+  '/apps': typeof AppsRouteWithChildren
   '/customScript.js': typeof CustomScriptDotjsRoute
+  '/customScript.js copy': typeof CustomScriptDotjscopyRoute
   '/deferred': typeof DeferredRoute
-  '/linkding': typeof LinkdingRoute
-  '/login': typeof LoginRoute
   '/posts': typeof PostsRouteWithChildren
-  '/protected': typeof ProtectedRoute
+  '/profile': typeof ProfileRouteWithChildren
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
   '/api/users': typeof ApiUsersRouteWithChildren
+  '/apps/comfyui': typeof AppsComfyuiRoute
+  '/apps/forgejo': typeof AppsForgejoRoute
+  '/apps/langflow': typeof AppsLangflowRoute
+  '/apps/owui': typeof AppsOwuiRoute
+  '/apps/rocketchat': typeof AppsRocketchatRoute
   '/posts/$postId': typeof PostsPostIdRoute
+  '/profile/bytestash': typeof ProfileBytestashRoute
+  '/profile/linkding': typeof ProfileLinkdingRoute
+  '/profile/user': typeof ProfileUserRoute
   '/users/$userId': typeof UsersUserIdRoute
+  '/apps/': typeof AppsIndexRoute
   '/posts/': typeof PostsIndexRoute
+  '/profile/': typeof ProfileIndexRoute
   '/users/': typeof UsersIndexRoute
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
@@ -168,17 +231,24 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/chat': typeof ChatRoute
   '/customScript.js': typeof CustomScriptDotjsRoute
+  '/customScript.js copy': typeof CustomScriptDotjscopyRoute
   '/deferred': typeof DeferredRoute
-  '/linkding': typeof LinkdingRoute
-  '/login': typeof LoginRoute
-  '/protected': typeof ProtectedRoute
   '/redirect': typeof RedirectRoute
   '/api/users': typeof ApiUsersRouteWithChildren
+  '/apps/comfyui': typeof AppsComfyuiRoute
+  '/apps/forgejo': typeof AppsForgejoRoute
+  '/apps/langflow': typeof AppsLangflowRoute
+  '/apps/owui': typeof AppsOwuiRoute
+  '/apps/rocketchat': typeof AppsRocketchatRoute
   '/posts/$postId': typeof PostsPostIdRoute
+  '/profile/bytestash': typeof ProfileBytestashRoute
+  '/profile/linkding': typeof ProfileLinkdingRoute
+  '/profile/user': typeof ProfileUserRoute
   '/users/$userId': typeof UsersUserIdRoute
+  '/apps': typeof AppsIndexRoute
   '/posts': typeof PostsIndexRoute
+  '/profile': typeof ProfileIndexRoute
   '/users': typeof UsersIndexRoute
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
@@ -190,20 +260,29 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_pathlessLayout': typeof PathlessLayoutRouteWithChildren
-  '/chat': typeof ChatRoute
+  '/apps': typeof AppsRouteWithChildren
   '/customScript.js': typeof CustomScriptDotjsRoute
+  '/customScript.js copy': typeof CustomScriptDotjscopyRoute
   '/deferred': typeof DeferredRoute
-  '/linkding': typeof LinkdingRoute
-  '/login': typeof LoginRoute
   '/posts': typeof PostsRouteWithChildren
-  '/protected': typeof ProtectedRoute
+  '/profile': typeof ProfileRouteWithChildren
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
   '/_pathlessLayout/_nested-layout': typeof PathlessLayoutNestedLayoutRouteWithChildren
   '/api/users': typeof ApiUsersRouteWithChildren
+  '/apps/comfyui': typeof AppsComfyuiRoute
+  '/apps/forgejo': typeof AppsForgejoRoute
+  '/apps/langflow': typeof AppsLangflowRoute
+  '/apps/owui': typeof AppsOwuiRoute
+  '/apps/rocketchat': typeof AppsRocketchatRoute
   '/posts/$postId': typeof PostsPostIdRoute
+  '/profile/bytestash': typeof ProfileBytestashRoute
+  '/profile/linkding': typeof ProfileLinkdingRoute
+  '/profile/user': typeof ProfileUserRoute
   '/users/$userId': typeof UsersUserIdRoute
+  '/apps/': typeof AppsIndexRoute
   '/posts/': typeof PostsIndexRoute
+  '/profile/': typeof ProfileIndexRoute
   '/users/': typeof UsersIndexRoute
   '/_pathlessLayout/_nested-layout/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/_pathlessLayout/_nested-layout/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
@@ -215,19 +294,28 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/chat'
+    | '/apps'
     | '/customScript.js'
+    | '/customScript.js copy'
     | '/deferred'
-    | '/linkding'
-    | '/login'
     | '/posts'
-    | '/protected'
+    | '/profile'
     | '/redirect'
     | '/users'
     | '/api/users'
+    | '/apps/comfyui'
+    | '/apps/forgejo'
+    | '/apps/langflow'
+    | '/apps/owui'
+    | '/apps/rocketchat'
     | '/posts/$postId'
+    | '/profile/bytestash'
+    | '/profile/linkding'
+    | '/profile/user'
     | '/users/$userId'
+    | '/apps/'
     | '/posts/'
+    | '/profile/'
     | '/users/'
     | '/route-a'
     | '/route-b'
@@ -237,17 +325,24 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/chat'
     | '/customScript.js'
+    | '/customScript.js copy'
     | '/deferred'
-    | '/linkding'
-    | '/login'
-    | '/protected'
     | '/redirect'
     | '/api/users'
+    | '/apps/comfyui'
+    | '/apps/forgejo'
+    | '/apps/langflow'
+    | '/apps/owui'
+    | '/apps/rocketchat'
     | '/posts/$postId'
+    | '/profile/bytestash'
+    | '/profile/linkding'
+    | '/profile/user'
     | '/users/$userId'
+    | '/apps'
     | '/posts'
+    | '/profile'
     | '/users'
     | '/route-a'
     | '/route-b'
@@ -258,20 +353,29 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_pathlessLayout'
-    | '/chat'
+    | '/apps'
     | '/customScript.js'
+    | '/customScript.js copy'
     | '/deferred'
-    | '/linkding'
-    | '/login'
     | '/posts'
-    | '/protected'
+    | '/profile'
     | '/redirect'
     | '/users'
     | '/_pathlessLayout/_nested-layout'
     | '/api/users'
+    | '/apps/comfyui'
+    | '/apps/forgejo'
+    | '/apps/langflow'
+    | '/apps/owui'
+    | '/apps/rocketchat'
     | '/posts/$postId'
+    | '/profile/bytestash'
+    | '/profile/linkding'
+    | '/profile/user'
     | '/users/$userId'
+    | '/apps/'
     | '/posts/'
+    | '/profile/'
     | '/users/'
     | '/_pathlessLayout/_nested-layout/route-a'
     | '/_pathlessLayout/_nested-layout/route-b'
@@ -283,13 +387,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PathlessLayoutRoute: typeof PathlessLayoutRouteWithChildren
-  ChatRoute: typeof ChatRoute
+  AppsRoute: typeof AppsRouteWithChildren
   CustomScriptDotjsRoute: typeof CustomScriptDotjsRoute
+  CustomScriptDotjscopyRoute: typeof CustomScriptDotjscopyRoute
   DeferredRoute: typeof DeferredRoute
-  LinkdingRoute: typeof LinkdingRoute
-  LoginRoute: typeof LoginRoute
   PostsRoute: typeof PostsRouteWithChildren
-  ProtectedRoute: typeof ProtectedRoute
+  ProfileRoute: typeof ProfileRouteWithChildren
   RedirectRoute: typeof RedirectRoute
   UsersRoute: typeof UsersRouteWithChildren
   ApiUsersRoute: typeof ApiUsersRouteWithChildren
@@ -313,11 +416,11 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof RedirectRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/protected': {
-      id: '/protected'
-      path: '/protected'
-      fullPath: '/protected'
-      preLoaderRoute: typeof ProtectedRouteImport
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/posts': {
@@ -327,25 +430,18 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof PostsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/linkding': {
-      id: '/linkding'
-      path: '/linkding'
-      fullPath: '/linkding'
-      preLoaderRoute: typeof LinkdingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/deferred': {
       id: '/deferred'
       path: '/deferred'
       fullPath: '/deferred'
       preLoaderRoute: typeof DeferredRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customScript.js copy': {
+      id: '/customScript.js copy'
+      path: '/customScript.js copy'
+      fullPath: '/customScript.js copy'
+      preLoaderRoute: typeof CustomScriptDotjscopyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/customScript.js': {
@@ -355,17 +451,17 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof CustomScriptDotjsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/chat': {
-      id: '/chat'
-      path: '/chat'
-      fullPath: '/chat'
-      preLoaderRoute: typeof ChatRouteImport
+    '/apps': {
+      id: '/apps'
+      path: '/apps'
+      fullPath: '/apps'
+      preLoaderRoute: typeof AppsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_pathlessLayout': {
       id: '/_pathlessLayout'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof PathlessLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -383,12 +479,26 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof UsersIndexRouteImport
       parentRoute: typeof UsersRoute
     }
+    '/profile/': {
+      id: '/profile/'
+      path: '/'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof ProfileIndexRouteImport
+      parentRoute: typeof ProfileRoute
+    }
     '/posts/': {
       id: '/posts/'
       path: '/'
       fullPath: '/posts/'
       preLoaderRoute: typeof PostsIndexRouteImport
       parentRoute: typeof PostsRoute
+    }
+    '/apps/': {
+      id: '/apps/'
+      path: '/'
+      fullPath: '/apps/'
+      preLoaderRoute: typeof AppsIndexRouteImport
+      parentRoute: typeof AppsRoute
     }
     '/users/$userId': {
       id: '/users/$userId'
@@ -397,12 +507,68 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof UsersUserIdRouteImport
       parentRoute: typeof UsersRoute
     }
+    '/profile/user': {
+      id: '/profile/user'
+      path: '/user'
+      fullPath: '/profile/user'
+      preLoaderRoute: typeof ProfileUserRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/linkding': {
+      id: '/profile/linkding'
+      path: '/linkding'
+      fullPath: '/profile/linkding'
+      preLoaderRoute: typeof ProfileLinkdingRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/bytestash': {
+      id: '/profile/bytestash'
+      path: '/bytestash'
+      fullPath: '/profile/bytestash'
+      preLoaderRoute: typeof ProfileBytestashRouteImport
+      parentRoute: typeof ProfileRoute
+    }
     '/posts/$postId': {
       id: '/posts/$postId'
       path: '/$postId'
       fullPath: '/posts/$postId'
       preLoaderRoute: typeof PostsPostIdRouteImport
       parentRoute: typeof PostsRoute
+    }
+    '/apps/rocketchat': {
+      id: '/apps/rocketchat'
+      path: '/rocketchat'
+      fullPath: '/apps/rocketchat'
+      preLoaderRoute: typeof AppsRocketchatRouteImport
+      parentRoute: typeof AppsRoute
+    }
+    '/apps/owui': {
+      id: '/apps/owui'
+      path: '/owui'
+      fullPath: '/apps/owui'
+      preLoaderRoute: typeof AppsOwuiRouteImport
+      parentRoute: typeof AppsRoute
+    }
+    '/apps/langflow': {
+      id: '/apps/langflow'
+      path: '/langflow'
+      fullPath: '/apps/langflow'
+      preLoaderRoute: typeof AppsLangflowRouteImport
+      parentRoute: typeof AppsRoute
+    }
+    '/apps/forgejo': {
+      id: '/apps/forgejo'
+      path: '/forgejo'
+      fullPath: '/apps/forgejo'
+      preLoaderRoute: typeof AppsForgejoRouteImport
+      parentRoute: typeof AppsRoute
+    }
+    '/apps/comfyui': {
+      id: '/apps/comfyui'
+      path: '/comfyui'
+      fullPath: '/apps/comfyui'
+      preLoaderRoute: typeof AppsComfyuiRouteImport
+      parentRoute: typeof AppsRoute
     }
     '/api/users': {
       id: '/api/users'
@@ -414,7 +580,7 @@ declare module '@tanstack/solid-router' {
     '/_pathlessLayout/_nested-layout': {
       id: '/_pathlessLayout/_nested-layout'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof PathlessLayoutNestedLayoutRouteImport
       parentRoute: typeof PathlessLayoutRoute
     }
@@ -486,6 +652,26 @@ const PathlessLayoutRouteWithChildren = PathlessLayoutRoute._addFileChildren(
   PathlessLayoutRouteChildren,
 )
 
+interface AppsRouteChildren {
+  AppsComfyuiRoute: typeof AppsComfyuiRoute
+  AppsForgejoRoute: typeof AppsForgejoRoute
+  AppsLangflowRoute: typeof AppsLangflowRoute
+  AppsOwuiRoute: typeof AppsOwuiRoute
+  AppsRocketchatRoute: typeof AppsRocketchatRoute
+  AppsIndexRoute: typeof AppsIndexRoute
+}
+
+const AppsRouteChildren: AppsRouteChildren = {
+  AppsComfyuiRoute: AppsComfyuiRoute,
+  AppsForgejoRoute: AppsForgejoRoute,
+  AppsLangflowRoute: AppsLangflowRoute,
+  AppsOwuiRoute: AppsOwuiRoute,
+  AppsRocketchatRoute: AppsRocketchatRoute,
+  AppsIndexRoute: AppsIndexRoute,
+}
+
+const AppsRouteWithChildren = AppsRoute._addFileChildren(AppsRouteChildren)
+
 interface PostsRouteChildren {
   PostsPostIdRoute: typeof PostsPostIdRoute
   PostsIndexRoute: typeof PostsIndexRoute
@@ -497,6 +683,23 @@ const PostsRouteChildren: PostsRouteChildren = {
 }
 
 const PostsRouteWithChildren = PostsRoute._addFileChildren(PostsRouteChildren)
+
+interface ProfileRouteChildren {
+  ProfileBytestashRoute: typeof ProfileBytestashRoute
+  ProfileLinkdingRoute: typeof ProfileLinkdingRoute
+  ProfileUserRoute: typeof ProfileUserRoute
+  ProfileIndexRoute: typeof ProfileIndexRoute
+}
+
+const ProfileRouteChildren: ProfileRouteChildren = {
+  ProfileBytestashRoute: ProfileBytestashRoute,
+  ProfileLinkdingRoute: ProfileLinkdingRoute,
+  ProfileUserRoute: ProfileUserRoute,
+  ProfileIndexRoute: ProfileIndexRoute,
+}
+
+const ProfileRouteWithChildren =
+  ProfileRoute._addFileChildren(ProfileRouteChildren)
 
 interface UsersRouteChildren {
   UsersUserIdRoute: typeof UsersUserIdRoute
@@ -525,13 +728,12 @@ const ApiUsersRouteWithChildren = ApiUsersRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PathlessLayoutRoute: PathlessLayoutRouteWithChildren,
-  ChatRoute: ChatRoute,
+  AppsRoute: AppsRouteWithChildren,
   CustomScriptDotjsRoute: CustomScriptDotjsRoute,
+  CustomScriptDotjscopyRoute: CustomScriptDotjscopyRoute,
   DeferredRoute: DeferredRoute,
-  LinkdingRoute: LinkdingRoute,
-  LoginRoute: LoginRoute,
   PostsRoute: PostsRouteWithChildren,
-  ProtectedRoute: ProtectedRoute,
+  ProfileRoute: ProfileRouteWithChildren,
   RedirectRoute: RedirectRoute,
   UsersRoute: UsersRouteWithChildren,
   ApiUsersRoute: ApiUsersRouteWithChildren,

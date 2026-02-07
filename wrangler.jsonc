@@ -1,34 +1,32 @@
 {
-   "$schema": "node_modules/wrangler/config-schema.json",
-   "name": "golden-apple-research-homepage",
-   "compatibility_date": "2025-09-24",
-   "compatibility_flags": ["nodejs_compat"],
-   "main": "@tanstack/solid-start/server-entry",
-   "vars": {
-      "MY_VAR": "Hello from Cloudflare",
-      "AUTH_KEYCLOAK_ID": "18d43b5b-1c11-4638-816a-17299381b0f2",
-      "AUTH_KEYCLOAK_ISSUER": "https://auth.golden-apple-research.org/realms/staging",
-      "AUTH_KEYCLOAK_SECRET": "",
-      "AUTH_URL": "https://www.golden-apple-research.org/api/auth",
-      "AUTH_SECRET": "",
-      "COMFYUI_URL":"https://cu.golden-apple-research.org",
-      "FORGEJO_URL":"https://fj.golden-apple-research.org",
-      "LANGFLOW_URL":"https://lf.golden-apple-research.org",
-      "OWUI_URL":"https://owui.golden-apple-research.org",
-      "ROCKETCHAT_URL":"https://rc.golden-apple-research.org",
-      "BYTESTASH_URL":"https://bs.golden-apple-research.org",
-      "LINKDING_URL": "https://ld.golden-apple-research.org",
-   },
-   "observability": {
-      "traces": {
-         "enabled": true,
-         // Must match the destination name in the Cloudflare dashboard
-         "destinations": ["grafana-traces"],
-      },
-      "logs": {
-         "enabled": true,
-         // Must match the destination name in the Cloudflare dashboard
-         "destinations": ["grafana-logs"],
-      },
-   },
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "golden-apple-research-homepage",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "@tanstack/solid-start/server-entry",
+  "vars": {
+    "MY_VAR": "Hello from Cloudflare",
+    "AUTH_KEYCLOAK_ID": "18d43b5b-1c11-4638-816a-17299381b0f2",
+    "AUTH_KEYCLOAK_ISSUER": "https://auth.golden-apple-research.org/realms/staging",
+    "AUTH_URL": "https://www.golden-apple-research.org/api/auth",
+    "COMFYUI_URL": "https://cu.golden-apple-research.org",
+    "FORGEJO_URL": "https://fj.golden-apple-research.org",
+    "LANGFLOW_URL": "https://lf.golden-apple-research.org",
+    "OWUI_URL": "https://owui.golden-apple-research.org",
+    "ROCKETCHAT_URL": "https://rc.golden-apple-research.org",
+    "BYTESTASH_URL": "https://bs.golden-apple-research.org",
+    "LINKDING_URL": "https://ld.golden-apple-research.org",
+  },
+  "observability": {
+    "traces": {
+      "enabled": true,
+      // Must match the destination name in the Cloudflare dashboard
+      "destinations": ["grafana-traces"],
+    },
+    "logs": {
+      "enabled": true,
+      // Must match the destination name in the Cloudflare dashboard
+      "destinations": ["grafana-logs"],
+    },
+  },
 }

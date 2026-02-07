@@ -16,6 +16,8 @@
     "ROCKETCHAT_URL": "https://rc.golden-apple-research.org",
     "BYTESTASH_URL": "https://bs.golden-apple-research.org",
     "LINKDING_URL": "https://ld.golden-apple-research.org",
+    "PORTKEY_API_URL": "https://api.portkey.ai",
+    "OPENROUTER_API_URL": "https://openrouter.ai/api",
   },
   "observability": {
     "traces": {

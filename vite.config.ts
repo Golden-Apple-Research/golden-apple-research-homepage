@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, type PluginOption } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 import { cloudflare } from "@cloudflare/vite-plugin";
 import { tanstackStart } from "@tanstack/solid-start/plugin/vite";
@@ -13,7 +13,7 @@ export default defineConfig({
       {
          // Workaround for https://github.com/solidjs/vite-plugin-solid/issues/232
          name: "remove-ssr-external",
-         configResolved(config) {
+         configResolved(config: any) {
             if (config.environments.ssr)
                config.environments.ssr.resolve.external = [];
          },
@@ -25,5 +25,5 @@ export default defineConfig({
       cloudflare({ viteEnvironment: { name: "ssr" } }),
       tanstackStart(),
       viteSolid({ ssr: true }),
-   ],
+   ] as PluginOption[],
 });

@@ -26,10 +26,6 @@ const LangFlowRoute = () => {
    );
 };
 export const Route = createFileRoute("/apps/langflow")({
-   beforeLoad: ({ context }) => {
-      if (!context.session) {
-         throw redirect({ to: "/" });
-      }
-   },
+
    component: LangFlowRoute,
 });

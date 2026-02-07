@@ -26,10 +26,6 @@ const ComfyUiRoute = () => {
    );
 };
 export const Route = createFileRoute("/apps/comfyui")({
-   beforeLoad: ({ context }) => {
-      if (!context.session) {
-         throw redirect({ to: "/" });
-      }
-   },
+
    component: ComfyUiRoute,
 });

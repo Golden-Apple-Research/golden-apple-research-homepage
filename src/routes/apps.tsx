@@ -1,16 +1,18 @@
-import { createFileRoute } from "@tanstack/solid-router";
-import { Outlet } from "@tanstack/solid-router";
-import { children } from "solid-js";
+import { createFileRoute, redirect, Outlet } from "@tanstack/solid-router";
 import { BottomNavBar } from "~/components/BottomNavBar";
 
 export const Route = createFileRoute("/apps")({
+   beforeLoad: ({ context }) => {
+      if (!context.session) {
+         throw redirect({ to: "/" });
+      }
+   },
    component: RouteComponent,
 });
 
 function RouteComponent() {
    return (
       <>
-         {" "}
          <Outlet />
          <BottomNavBar />
       </>

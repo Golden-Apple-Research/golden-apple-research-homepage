@@ -35,10 +35,6 @@ const ForgeJoRoute = () => {
 };
 
 export const Route = createFileRoute("/apps/forgejo")({
-   beforeLoad: ({ context }) => {
-      if (!context.session) {
-         throw redirect({ to: "/" });
-      }
-   },
+
    component: ForgeJoRoute,
 });

@@ -19,7 +19,7 @@ declare module "@auth/core/types" {
 }
 
 /**
- * Auth.js configuration for TanStack Start with Auth0
+ * Auth.js configuration for TanStack Start with KEYCLOAK
  */
 export const authConfig: StartAuthJSConfig = {
    // basePath is derived from AUTH_URL env var
@@ -27,7 +27,7 @@ export const authConfig: StartAuthJSConfig = {
    secret: process.env.AUTH_SECRET,
    providers: [
       Keycloak({
-         // Auth.js auto-reads AUTH_AUTH0_ID, AUTH_AUTH0_SECRET, AUTH_AUTH0_ISSUER from env
+         // Auth.js auto-reads AUTH_KEYCLOAK_ID, AUTH_KEYCLOAK_SECRET, AUTH_KEYCLOAK_ISSUER from env
          authorization: {
             params: {
                scope: "email email_verified openid profile",
@@ -35,11 +35,11 @@ export const authConfig: StartAuthJSConfig = {
             },
          },
          async profile(profile, tokens) {
-            await setCookie(
+            setCookie(
                "keycloakToken",
                encodeURIComponent(tokens.access_token ?? ""),
             );
-            await setCookie(
+            setCookie(
                "keycloakUser",
                encodeURIComponent(JSON.stringify(profile)),
             );

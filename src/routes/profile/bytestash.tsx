@@ -2,11 +2,7 @@ import { createFileRoute, redirect } from "@tanstack/solid-router";
 import { Show } from "solid-js";
 
 export const Route = createFileRoute("/profile/bytestash")({
-   beforeLoad: ({ context }) => {
-      if (!context.session) {
-         throw redirect({ to: "/" });
-      }
-   },
+
    component: ByteStashRoute,
 });
 

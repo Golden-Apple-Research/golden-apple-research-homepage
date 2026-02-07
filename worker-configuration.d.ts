@@ -3,7 +3,6 @@
 // Runtime types generated with workerd@1.20251217.0 2025-09-24 nodejs_compat
 declare namespace Cloudflare {
 	interface Env {
-		MY_VAR: "Hello from Cloudflare";
 		AUTH_KEYCLOAK_ID: string;
 		AUTH_KEYCLOAK_SECRET: string;
 		AUTH_SECRET: string;

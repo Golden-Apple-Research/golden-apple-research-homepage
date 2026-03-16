@@ -29,5 +29,4 @@ jobs:
       - name: Run Drizzle Migration
         run: pnpm drizzle-kit push --url $POSTGRES_URL --dialect postgresql --schema src/lib/db/schema.ts --verbose
         env:
-          # WICHTIG: Nutze hier den Direct Connection String (Port 5432)!
-          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          POSTGRES_URL: ${{ secrets.DATABASE_URL }}

@@ -25,7 +25,7 @@ function RouteComponent() {
 
             return (
               <div class="flex justify-center p-4">
-                <div class="flex h-60 w-6xl flex-col rounded-base border bg-neutral-primary shadow-xs">
+                <div class="flex h-72 w-6xl flex-col rounded-base border bg-neutral-primary shadow-xs">
                   <ul
                     class="w-4x1 flex items-center rounded-t-base border-b border-default bg-neutral-secondary-soft text-sm font-medium text-body"
                     id="defaultTab"
@@ -86,7 +86,7 @@ function RouteComponent() {
                           class="flex items-center p-4"
                         >
                           <img
-                            src="/huggingface_logo.svg"
+                            src="/images/huggingface_logo.svg"
                             class="h-5 focus:outline-none"
                             alt="Huggingface Logo"
                           />
@@ -162,7 +162,7 @@ function RouteComponent() {
                       </div>
                     </Show>
                     <Show when={activeTab() === "description"}>
-                      <div class="block w-5xl bg-neutral-primary p-4 shadow-xs">
+                      <div class="block w-5xl bg-neutral-primary pt-0.5 pr-4 pb-0.5 pl-4 shadow-xs">
                         {model.description || "Keine Beschreibung verfügbar"}
                       </div>
                     </Show>

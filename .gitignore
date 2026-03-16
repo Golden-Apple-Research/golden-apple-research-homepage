@@ -7,3 +7,5 @@ dist
 .env*
 .tanstack
 tmp
+unused
+.postgres

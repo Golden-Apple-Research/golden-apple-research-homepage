@@ -1,32 +1,32 @@
-import { createFileRoute } from '@tanstack/solid-router'
-import { NotFound } from 'src/components/NotFound'
-import { UserErrorComponent } from 'src/components/UserError'
-import type { User } from '../utils/users'
+import { createFileRoute } from "@tanstack/solid-router";
+import { NotFound } from "~/routes/components/NotFound";
+import { UserErrorComponent } from "~/routes/components/UserError";
+import type { User } from "../utils/users";
 
-export const Route = createFileRoute('/users/$userId')({
+export const Route = createFileRoute("/users/$userId")({
   loader: async ({ params: { userId } }) => {
     try {
-      const res = await fetch('/api/users/' + userId)
+      const res = await fetch("/api/users/" + userId);
       if (!res.ok) {
-        throw new Error('Unexpected status code')
+        throw new Error("Unexpected status code");
       }
 
-      const data = await res.json()
+      const data = await res.json();
 
-      return data as User
+      return data as User;
     } catch {
-      throw new Error('Failed to fetch user')
+      throw new Error("Failed to fetch user");
     }
   },
   errorComponent: UserErrorComponent,
   component: UserComponent,
   notFoundComponent: () => {
-    return <NotFound>User not found</NotFound>
+    return <NotFound>User not found</NotFound>;
   },
-})
+});
 
 function UserComponent() {
-  const user = Route.useLoaderData()
+  const user = Route.useLoaderData();
 
   return (
     <div class="space-y-2">
@@ -35,11 +35,11 @@ function UserComponent() {
       <div>
         <a
           href={`/api/users/${user().id}`}
-          class="text-blue-800 hover:text-blue-600 underline"
+          class="text-blue-800 underline hover:text-blue-600"
         >
           View as JSON
         </a>
       </div>
     </div>
-  )
+  );
 }

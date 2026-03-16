@@ -11,8 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RedirectRouteImport } from './routes/redirect'
 import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as NewsfeedRouteImport } from './routes/newsfeed'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as ModelsRouteImport } from './routes/models'
+import { Route as ImagesRouteImport } from './routes/images'
+import { Route as ExamplesRouteImport } from './routes/examples'
 import { Route as DeferredRouteImport } from './routes/deferred'
 import { Route as CustomScriptDotjsRouteImport } from './routes/customScript[.]js'
 import { Route as AppsRouteImport } from './routes/apps'
@@ -20,19 +22,15 @@ import { Route as PathlessLayoutRouteImport } from './routes/_pathlessLayout'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProfileIndexRouteImport } from './routes/profile/index'
 import { Route as NewsfeedIndexRouteImport } from './routes/newsfeed/index'
+import { Route as NewsIndexRouteImport } from './routes/news/index'
 import { Route as ModelsIndexRouteImport } from './routes/models/index'
 import { Route as AppsIndexRouteImport } from './routes/apps/index'
 import { Route as ProfileUserRouteImport } from './routes/profile/user'
 import { Route as ProfileLinkdingRouteImport } from './routes/profile/linkding'
-import { Route as ProfileBytestashRouteImport } from './routes/profile/bytestash'
-import { Route as AppsRocketchatRouteImport } from './routes/apps/rocketchat'
+import { Route as ModelsLeaderboardRouteImport } from './routes/models/leaderboard'
+import { Route as ModelsEmbeddingleaderboardRouteImport } from './routes/models/embeddingleaderboard'
 import { Route as AppsOwuiRouteImport } from './routes/apps/owui'
-import { Route as AppsLangflowRouteImport } from './routes/apps/langflow'
-import { Route as AppsForgejoRouteImport } from './routes/apps/forgejo'
-import { Route as AppsComfyuiRouteImport } from './routes/apps/comfyui'
-import { Route as ApiUsersRouteImport } from './routes/api/users'
 import { Route as PathlessLayoutNestedLayoutRouteImport } from './routes/_pathlessLayout/_nested-layout'
-import { Route as ApiUsersUserIdRouteImport } from './routes/api/users.$userId'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as PathlessLayoutNestedLayoutRouteBRouteImport } from './routes/_pathlessLayout/_nested-layout/route-b'
 import { Route as PathlessLayoutNestedLayoutRouteARouteImport } from './routes/_pathlessLayout/_nested-layout/route-a'
@@ -47,14 +45,24 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NewsfeedRoute = NewsfeedRouteImport.update({
-  id: '/newsfeed',
-  path: '/newsfeed',
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModelsRoute = ModelsRouteImport.update({
   id: '/models',
   path: '/models',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImagesRoute = ImagesRouteImport.update({
+  id: '/images',
+  path: '/images',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamplesRoute = ExamplesRouteImport.update({
+  id: '/examples',
+  path: '/examples',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DeferredRoute = DeferredRouteImport.update({
@@ -87,9 +95,14 @@ const ProfileIndexRoute = ProfileIndexRouteImport.update({
   getParentRoute: () => ProfileRoute,
 } as any)
 const NewsfeedIndexRoute = NewsfeedIndexRouteImport.update({
+  id: '/newsfeed/',
+  path: '/newsfeed/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => NewsfeedRoute,
+  getParentRoute: () => NewsRoute,
 } as any)
 const ModelsIndexRoute = ModelsIndexRouteImport.update({
   id: '/',
@@ -111,51 +124,27 @@ const ProfileLinkdingRoute = ProfileLinkdingRouteImport.update({
   path: '/linkding',
   getParentRoute: () => ProfileRoute,
 } as any)
-const ProfileBytestashRoute = ProfileBytestashRouteImport.update({
-  id: '/bytestash',
-  path: '/bytestash',
-  getParentRoute: () => ProfileRoute,
+const ModelsLeaderboardRoute = ModelsLeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => ModelsRoute,
 } as any)
-const AppsRocketchatRoute = AppsRocketchatRouteImport.update({
-  id: '/rocketchat',
-  path: '/rocketchat',
-  getParentRoute: () => AppsRoute,
-} as any)
+const ModelsEmbeddingleaderboardRoute =
+  ModelsEmbeddingleaderboardRouteImport.update({
+    id: '/embeddingleaderboard',
+    path: '/embeddingleaderboard',
+    getParentRoute: () => ModelsRoute,
+  } as any)
 const AppsOwuiRoute = AppsOwuiRouteImport.update({
   id: '/owui',
   path: '/owui',
   getParentRoute: () => AppsRoute,
-} as any)
-const AppsLangflowRoute = AppsLangflowRouteImport.update({
-  id: '/langflow',
-  path: '/langflow',
-  getParentRoute: () => AppsRoute,
-} as any)
-const AppsForgejoRoute = AppsForgejoRouteImport.update({
-  id: '/forgejo',
-  path: '/forgejo',
-  getParentRoute: () => AppsRoute,
-} as any)
-const AppsComfyuiRoute = AppsComfyuiRouteImport.update({
-  id: '/comfyui',
-  path: '/comfyui',
-  getParentRoute: () => AppsRoute,
-} as any)
-const ApiUsersRoute = ApiUsersRouteImport.update({
-  id: '/api/users',
-  path: '/api/users',
-  getParentRoute: () => rootRouteImport,
 } as any)
 const PathlessLayoutNestedLayoutRoute =
   PathlessLayoutNestedLayoutRouteImport.update({
     id: '/_nested-layout',
     getParentRoute: () => PathlessLayoutRoute,
   } as any)
-const ApiUsersUserIdRoute = ApiUsersUserIdRouteImport.update({
-  id: '/$userId',
-  path: '/$userId',
-  getParentRoute: () => ApiUsersRoute,
-} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -179,50 +168,46 @@ export interface FileRoutesByFullPath {
   '/apps': typeof AppsRouteWithChildren
   '/customScript.js': typeof CustomScriptDotjsRoute
   '/deferred': typeof DeferredRoute
+  '/examples': typeof ExamplesRoute
+  '/images': typeof ImagesRoute
   '/models': typeof ModelsRouteWithChildren
-  '/newsfeed': typeof NewsfeedRouteWithChildren
+  '/news': typeof NewsRouteWithChildren
   '/profile': typeof ProfileRouteWithChildren
   '/redirect': typeof RedirectRoute
-  '/api/users': typeof ApiUsersRouteWithChildren
-  '/apps/comfyui': typeof AppsComfyuiRoute
-  '/apps/forgejo': typeof AppsForgejoRoute
-  '/apps/langflow': typeof AppsLangflowRoute
   '/apps/owui': typeof AppsOwuiRoute
-  '/apps/rocketchat': typeof AppsRocketchatRoute
-  '/profile/bytestash': typeof ProfileBytestashRoute
+  '/models/embeddingleaderboard': typeof ModelsEmbeddingleaderboardRoute
+  '/models/leaderboard': typeof ModelsLeaderboardRoute
   '/profile/linkding': typeof ProfileLinkdingRoute
   '/profile/user': typeof ProfileUserRoute
   '/apps/': typeof AppsIndexRoute
   '/models/': typeof ModelsIndexRoute
+  '/news/': typeof NewsIndexRoute
   '/newsfeed/': typeof NewsfeedIndexRoute
   '/profile/': typeof ProfileIndexRoute
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/users/$userId': typeof ApiUsersUserIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/customScript.js': typeof CustomScriptDotjsRoute
   '/deferred': typeof DeferredRoute
+  '/examples': typeof ExamplesRoute
+  '/images': typeof ImagesRoute
   '/redirect': typeof RedirectRoute
-  '/api/users': typeof ApiUsersRouteWithChildren
-  '/apps/comfyui': typeof AppsComfyuiRoute
-  '/apps/forgejo': typeof AppsForgejoRoute
-  '/apps/langflow': typeof AppsLangflowRoute
   '/apps/owui': typeof AppsOwuiRoute
-  '/apps/rocketchat': typeof AppsRocketchatRoute
-  '/profile/bytestash': typeof ProfileBytestashRoute
+  '/models/embeddingleaderboard': typeof ModelsEmbeddingleaderboardRoute
+  '/models/leaderboard': typeof ModelsLeaderboardRoute
   '/profile/linkding': typeof ProfileLinkdingRoute
   '/profile/user': typeof ProfileUserRoute
   '/apps': typeof AppsIndexRoute
   '/models': typeof ModelsIndexRoute
+  '/news': typeof NewsIndexRoute
   '/newsfeed': typeof NewsfeedIndexRoute
   '/profile': typeof ProfileIndexRoute
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/users/$userId': typeof ApiUsersUserIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -231,28 +216,26 @@ export interface FileRoutesById {
   '/apps': typeof AppsRouteWithChildren
   '/customScript.js': typeof CustomScriptDotjsRoute
   '/deferred': typeof DeferredRoute
+  '/examples': typeof ExamplesRoute
+  '/images': typeof ImagesRoute
   '/models': typeof ModelsRouteWithChildren
-  '/newsfeed': typeof NewsfeedRouteWithChildren
+  '/news': typeof NewsRouteWithChildren
   '/profile': typeof ProfileRouteWithChildren
   '/redirect': typeof RedirectRoute
   '/_pathlessLayout/_nested-layout': typeof PathlessLayoutNestedLayoutRouteWithChildren
-  '/api/users': typeof ApiUsersRouteWithChildren
-  '/apps/comfyui': typeof AppsComfyuiRoute
-  '/apps/forgejo': typeof AppsForgejoRoute
-  '/apps/langflow': typeof AppsLangflowRoute
   '/apps/owui': typeof AppsOwuiRoute
-  '/apps/rocketchat': typeof AppsRocketchatRoute
-  '/profile/bytestash': typeof ProfileBytestashRoute
+  '/models/embeddingleaderboard': typeof ModelsEmbeddingleaderboardRoute
+  '/models/leaderboard': typeof ModelsLeaderboardRoute
   '/profile/linkding': typeof ProfileLinkdingRoute
   '/profile/user': typeof ProfileUserRoute
   '/apps/': typeof AppsIndexRoute
   '/models/': typeof ModelsIndexRoute
+  '/news/': typeof NewsIndexRoute
   '/newsfeed/': typeof NewsfeedIndexRoute
   '/profile/': typeof ProfileIndexRoute
   '/_pathlessLayout/_nested-layout/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/_pathlessLayout/_nested-layout/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/users/$userId': typeof ApiUsersUserIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -261,50 +244,46 @@ export interface FileRouteTypes {
     | '/apps'
     | '/customScript.js'
     | '/deferred'
+    | '/examples'
+    | '/images'
     | '/models'
-    | '/newsfeed'
+    | '/news'
     | '/profile'
     | '/redirect'
-    | '/api/users'
-    | '/apps/comfyui'
-    | '/apps/forgejo'
-    | '/apps/langflow'
     | '/apps/owui'
-    | '/apps/rocketchat'
-    | '/profile/bytestash'
+    | '/models/embeddingleaderboard'
+    | '/models/leaderboard'
     | '/profile/linkding'
     | '/profile/user'
     | '/apps/'
     | '/models/'
+    | '/news/'
     | '/newsfeed/'
     | '/profile/'
     | '/route-a'
     | '/route-b'
     | '/api/auth/$'
-    | '/api/users/$userId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/customScript.js'
     | '/deferred'
+    | '/examples'
+    | '/images'
     | '/redirect'
-    | '/api/users'
-    | '/apps/comfyui'
-    | '/apps/forgejo'
-    | '/apps/langflow'
     | '/apps/owui'
-    | '/apps/rocketchat'
-    | '/profile/bytestash'
+    | '/models/embeddingleaderboard'
+    | '/models/leaderboard'
     | '/profile/linkding'
     | '/profile/user'
     | '/apps'
     | '/models'
+    | '/news'
     | '/newsfeed'
     | '/profile'
     | '/route-a'
     | '/route-b'
     | '/api/auth/$'
-    | '/api/users/$userId'
   id:
     | '__root__'
     | '/'
@@ -312,28 +291,26 @@ export interface FileRouteTypes {
     | '/apps'
     | '/customScript.js'
     | '/deferred'
+    | '/examples'
+    | '/images'
     | '/models'
-    | '/newsfeed'
+    | '/news'
     | '/profile'
     | '/redirect'
     | '/_pathlessLayout/_nested-layout'
-    | '/api/users'
-    | '/apps/comfyui'
-    | '/apps/forgejo'
-    | '/apps/langflow'
     | '/apps/owui'
-    | '/apps/rocketchat'
-    | '/profile/bytestash'
+    | '/models/embeddingleaderboard'
+    | '/models/leaderboard'
     | '/profile/linkding'
     | '/profile/user'
     | '/apps/'
     | '/models/'
+    | '/news/'
     | '/newsfeed/'
     | '/profile/'
     | '/_pathlessLayout/_nested-layout/route-a'
     | '/_pathlessLayout/_nested-layout/route-b'
     | '/api/auth/$'
-    | '/api/users/$userId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -342,11 +319,13 @@ export interface RootRouteChildren {
   AppsRoute: typeof AppsRouteWithChildren
   CustomScriptDotjsRoute: typeof CustomScriptDotjsRoute
   DeferredRoute: typeof DeferredRoute
+  ExamplesRoute: typeof ExamplesRoute
+  ImagesRoute: typeof ImagesRoute
   ModelsRoute: typeof ModelsRouteWithChildren
-  NewsfeedRoute: typeof NewsfeedRouteWithChildren
+  NewsRoute: typeof NewsRouteWithChildren
   ProfileRoute: typeof ProfileRouteWithChildren
   RedirectRoute: typeof RedirectRoute
-  ApiUsersRoute: typeof ApiUsersRouteWithChildren
+  NewsfeedIndexRoute: typeof NewsfeedIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -366,11 +345,11 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/newsfeed': {
-      id: '/newsfeed'
-      path: '/newsfeed'
-      fullPath: '/newsfeed'
-      preLoaderRoute: typeof NewsfeedRouteImport
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/models': {
@@ -378,6 +357,20 @@ declare module '@tanstack/solid-router' {
       path: '/models'
       fullPath: '/models'
       preLoaderRoute: typeof ModelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/images': {
+      id: '/images'
+      path: '/images'
+      fullPath: '/images'
+      preLoaderRoute: typeof ImagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examples': {
+      id: '/examples'
+      path: '/examples'
+      fullPath: '/examples'
+      preLoaderRoute: typeof ExamplesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/deferred': {
@@ -424,10 +417,17 @@ declare module '@tanstack/solid-router' {
     }
     '/newsfeed/': {
       id: '/newsfeed/'
-      path: '/'
+      path: '/newsfeed'
       fullPath: '/newsfeed/'
       preLoaderRoute: typeof NewsfeedIndexRouteImport
-      parentRoute: typeof NewsfeedRoute
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/': {
+      id: '/news/'
+      path: '/'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof NewsRoute
     }
     '/models/': {
       id: '/models/'
@@ -457,19 +457,19 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof ProfileLinkdingRouteImport
       parentRoute: typeof ProfileRoute
     }
-    '/profile/bytestash': {
-      id: '/profile/bytestash'
-      path: '/bytestash'
-      fullPath: '/profile/bytestash'
-      preLoaderRoute: typeof ProfileBytestashRouteImport
-      parentRoute: typeof ProfileRoute
+    '/models/leaderboard': {
+      id: '/models/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/models/leaderboard'
+      preLoaderRoute: typeof ModelsLeaderboardRouteImport
+      parentRoute: typeof ModelsRoute
     }
-    '/apps/rocketchat': {
-      id: '/apps/rocketchat'
-      path: '/rocketchat'
-      fullPath: '/apps/rocketchat'
-      preLoaderRoute: typeof AppsRocketchatRouteImport
-      parentRoute: typeof AppsRoute
+    '/models/embeddingleaderboard': {
+      id: '/models/embeddingleaderboard'
+      path: '/embeddingleaderboard'
+      fullPath: '/models/embeddingleaderboard'
+      preLoaderRoute: typeof ModelsEmbeddingleaderboardRouteImport
+      parentRoute: typeof ModelsRoute
     }
     '/apps/owui': {
       id: '/apps/owui'
@@ -478,47 +478,12 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof AppsOwuiRouteImport
       parentRoute: typeof AppsRoute
     }
-    '/apps/langflow': {
-      id: '/apps/langflow'
-      path: '/langflow'
-      fullPath: '/apps/langflow'
-      preLoaderRoute: typeof AppsLangflowRouteImport
-      parentRoute: typeof AppsRoute
-    }
-    '/apps/forgejo': {
-      id: '/apps/forgejo'
-      path: '/forgejo'
-      fullPath: '/apps/forgejo'
-      preLoaderRoute: typeof AppsForgejoRouteImport
-      parentRoute: typeof AppsRoute
-    }
-    '/apps/comfyui': {
-      id: '/apps/comfyui'
-      path: '/comfyui'
-      fullPath: '/apps/comfyui'
-      preLoaderRoute: typeof AppsComfyuiRouteImport
-      parentRoute: typeof AppsRoute
-    }
-    '/api/users': {
-      id: '/api/users'
-      path: '/api/users'
-      fullPath: '/api/users'
-      preLoaderRoute: typeof ApiUsersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_pathlessLayout/_nested-layout': {
       id: '/_pathlessLayout/_nested-layout'
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof PathlessLayoutNestedLayoutRouteImport
       parentRoute: typeof PathlessLayoutRoute
-    }
-    '/api/users/$userId': {
-      id: '/api/users/$userId'
-      path: '/$userId'
-      fullPath: '/api/users/$userId'
-      preLoaderRoute: typeof ApiUsersUserIdRouteImport
-      parentRoute: typeof ApiUsersRoute
     }
     '/api/auth/$': {
       id: '/api/auth/$'
@@ -575,57 +540,49 @@ const PathlessLayoutRouteWithChildren = PathlessLayoutRoute._addFileChildren(
 )
 
 interface AppsRouteChildren {
-  AppsComfyuiRoute: typeof AppsComfyuiRoute
-  AppsForgejoRoute: typeof AppsForgejoRoute
-  AppsLangflowRoute: typeof AppsLangflowRoute
   AppsOwuiRoute: typeof AppsOwuiRoute
-  AppsRocketchatRoute: typeof AppsRocketchatRoute
   AppsIndexRoute: typeof AppsIndexRoute
 }
 
 const AppsRouteChildren: AppsRouteChildren = {
-  AppsComfyuiRoute: AppsComfyuiRoute,
-  AppsForgejoRoute: AppsForgejoRoute,
-  AppsLangflowRoute: AppsLangflowRoute,
   AppsOwuiRoute: AppsOwuiRoute,
-  AppsRocketchatRoute: AppsRocketchatRoute,
   AppsIndexRoute: AppsIndexRoute,
 }
 
 const AppsRouteWithChildren = AppsRoute._addFileChildren(AppsRouteChildren)
 
 interface ModelsRouteChildren {
+  ModelsEmbeddingleaderboardRoute: typeof ModelsEmbeddingleaderboardRoute
+  ModelsLeaderboardRoute: typeof ModelsLeaderboardRoute
   ModelsIndexRoute: typeof ModelsIndexRoute
 }
 
 const ModelsRouteChildren: ModelsRouteChildren = {
+  ModelsEmbeddingleaderboardRoute: ModelsEmbeddingleaderboardRoute,
+  ModelsLeaderboardRoute: ModelsLeaderboardRoute,
   ModelsIndexRoute: ModelsIndexRoute,
 }
 
 const ModelsRouteWithChildren =
   ModelsRoute._addFileChildren(ModelsRouteChildren)
 
-interface NewsfeedRouteChildren {
-  NewsfeedIndexRoute: typeof NewsfeedIndexRoute
+interface NewsRouteChildren {
+  NewsIndexRoute: typeof NewsIndexRoute
 }
 
-const NewsfeedRouteChildren: NewsfeedRouteChildren = {
-  NewsfeedIndexRoute: NewsfeedIndexRoute,
+const NewsRouteChildren: NewsRouteChildren = {
+  NewsIndexRoute: NewsIndexRoute,
 }
 
-const NewsfeedRouteWithChildren = NewsfeedRoute._addFileChildren(
-  NewsfeedRouteChildren,
-)
+const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
 
 interface ProfileRouteChildren {
-  ProfileBytestashRoute: typeof ProfileBytestashRoute
   ProfileLinkdingRoute: typeof ProfileLinkdingRoute
   ProfileUserRoute: typeof ProfileUserRoute
   ProfileIndexRoute: typeof ProfileIndexRoute
 }
 
 const ProfileRouteChildren: ProfileRouteChildren = {
-  ProfileBytestashRoute: ProfileBytestashRoute,
   ProfileLinkdingRoute: ProfileLinkdingRoute,
   ProfileUserRoute: ProfileUserRoute,
   ProfileIndexRoute: ProfileIndexRoute,
@@ -634,29 +591,19 @@ const ProfileRouteChildren: ProfileRouteChildren = {
 const ProfileRouteWithChildren =
   ProfileRoute._addFileChildren(ProfileRouteChildren)
 
-interface ApiUsersRouteChildren {
-  ApiUsersUserIdRoute: typeof ApiUsersUserIdRoute
-}
-
-const ApiUsersRouteChildren: ApiUsersRouteChildren = {
-  ApiUsersUserIdRoute: ApiUsersUserIdRoute,
-}
-
-const ApiUsersRouteWithChildren = ApiUsersRoute._addFileChildren(
-  ApiUsersRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PathlessLayoutRoute: PathlessLayoutRouteWithChildren,
   AppsRoute: AppsRouteWithChildren,
   CustomScriptDotjsRoute: CustomScriptDotjsRoute,
   DeferredRoute: DeferredRoute,
+  ExamplesRoute: ExamplesRoute,
+  ImagesRoute: ImagesRoute,
   ModelsRoute: ModelsRouteWithChildren,
-  NewsfeedRoute: NewsfeedRouteWithChildren,
+  NewsRoute: NewsRouteWithChildren,
   ProfileRoute: ProfileRouteWithChildren,
   RedirectRoute: RedirectRoute,
-  ApiUsersRoute: ApiUsersRouteWithChildren,
+  NewsfeedIndexRoute: NewsfeedIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

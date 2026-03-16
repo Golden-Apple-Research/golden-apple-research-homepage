@@ -1,13 +1,15 @@
-import { Link, Outlet, createFileRoute } from '@tanstack/solid-router'
-import { fetchOpenrouterModels } from '~/utils/models'
-import type { OpenrouterModelType } from '~/utils/models'
-import { useQuery } from '@tanstack/solid-query'
+import { Link, Outlet, createFileRoute } from "@tanstack/solid-router";
+import { fetchOpenrouterModels } from "~/utils/models";
+import type { OpenrouterModelType } from "~/utils/models";
+import { useQuery } from "@tanstack/solid-query";
+// import { gradioApps } from "~/utils/gradioImport";
+import { QueryClientProvider } from "@tanstack/solid-query";
 
+// Das ist die tatsächliche Instanz, die "dein" queryClient ist
 
-export const Route = createFileRoute('/models')({
-
+export const Route = createFileRoute("/models")({
   component: ModelsRoute,
-})
+});
 
 function ModelsRoute() {
   // const { status, data, error } = useQuery(() => ({ queryKey: ['models'], queryFn: fetchOpenrouterModels }))
@@ -18,13 +20,12 @@ function ModelsRoute() {
   //  if (status === 'error') {
   //    return <span>Error: {error.message}</span>
   //  }
-     return (
-       <div>
-
-         <Outlet />
-       </div>
-     )
-   }
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
+}
 
 //    return (
 //       <>

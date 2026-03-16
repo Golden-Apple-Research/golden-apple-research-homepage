@@ -1,30 +1,29 @@
-import { createFileRoute, redirect } from "@tanstack/solid-router";
+import { createFileRoute } from "@tanstack/solid-router";
 import { createSignal, createEffect, onCleanup } from "solid-js";
 
-const RocketChatRoute = () => {
-  const [height, setHeight] = createSignal(0);
+// Neue Komponente
+interface ExamplesIframeProps {
+  src: string;
+}
+
+export const ExamplesIframe = (props: ExamplesIframeProps) => {
+  const [height, setHeight] = createSignal(window?.innerHeight ?? 0);
 
   createEffect(() => {
     if (typeof window !== "undefined") {
       setHeight(window.innerHeight);
-
       const handleResize = () => setHeight(window.innerHeight);
       window.addEventListener("resize", handleResize);
-
       onCleanup(() => window.removeEventListener("resize", handleResize));
     }
   });
 
   return (
-    <div>
+    <div style={{ height: `${height()}px`, width: "100%", overflow: "auto" }}>
       <iframe
-        src={process.env.ROCKETCHAT_URL}
-        height={height() - 80 + "px"}
-        width="100%"
+        src={props.src}
+        style={{ height: "100%", width: "100%" }}
       ></iframe>
     </div>
   );
 };
-export const Route = createFileRoute("/apps/rocketchat")({
-  component: RocketChatRoute,
-});

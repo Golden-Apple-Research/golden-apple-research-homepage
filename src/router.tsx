@@ -1,16 +1,26 @@
-import { createRouter } from '@tanstack/solid-router'
-import { routeTree } from './routeTree.gen'
-import { DefaultCatchBoundary } from './components/DefaultCatchBoundary'
-import { NotFound } from './components/NotFound'
+import { createRouter as createTanStackRouter } from "@tanstack/solid-router";
+import { routeTree } from "./routeTree.gen";
+// import { QueryClient } from "@tanstack/solid-query";
+//
+import { QueryClient } from "@tanstack/solid-query";
+export const queryClient = new QueryClient();
 
 export function getRouter() {
-  const router = createRouter({
+  const router = createTanStackRouter({
     routeTree,
-    defaultPreload: 'intent',
-    defaultErrorComponent: DefaultCatchBoundary,
-    defaultNotFoundComponent: () => <NotFound />,
+    context: () => ({
+      queryClient,
+    }),
     scrollRestoration: true,
-  })
+    defaultPreload: "intent",
+    defaultPreloadStaleTime: 0,
+  });
 
-  return router
+  return router;
+}
+
+declare module "@tanstack/solid-router" {
+  interface Register {
+    router: ReturnType<typeof getRouter>;
+  }
 }

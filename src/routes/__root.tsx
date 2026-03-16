@@ -1,11 +1,8 @@
 /// <reference types="vite/client" />
-import type { AuthSession } from "start-authjs";
 import {
   HeadContent,
-  Link,
   Scripts,
   Outlet,
-  createRootRoute,
   createRootRouteWithContext,
 } from "@tanstack/solid-router";
 import { TanStackRouterDevtools } from "@tanstack/solid-router-devtools";
@@ -17,22 +14,35 @@ import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary";
 import { NotFound } from "~/components/NotFound";
 import appCss from "~/styles/app.css?url";
 import { seo } from "~/utils/seo";
-import { authConfig } from "~/utils/auth";
+import { getAuth, type Auth } from "~/utils/betterAuth";
+import { NavBar } from "~/components/NavBar";
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
+const queryClient = new QueryClient();
 import { createServerFn } from "@tanstack/solid-start";
 import { getRequest } from "@tanstack/solid-start/server";
-import { NavBar } from "~/components/NavBar";
-import { getSession } from "start-authjs";
 
 interface RouterContext {
-  session: AuthSession | null;
+  session: Awaited<ReturnType<Auth["api"]["getSession"]>> | null;
 }
 
 const fetchSession = createServerFn({ method: "GET" }).handler(async () => {
   const request = getRequest();
-  const session = await getSession(request, authConfig);
+  // Better-Auth Session via API holen
+  const env = {
+    POSTGRES_URL: process.env.POSTGRES_URL!,
+  };
+
+  const auth = getAuth(env);
+
+  // Better-Auth Session via API holen
+  const session = await auth.api.getSession({
+    headers: request.headers,
+  });
   return session;
 });
+
 export const Route = createRootRouteWithContext<RouterContext>()({
+  // 2. beforeLoad ruft die Server-Funktion auf
   beforeLoad: async () => {
     const session = await fetchSession();
     return {
@@ -108,9 +118,11 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 });
 function RootComponent() {
   return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
+    <QueryClientProvider client={queryClient}>
+      <RootDocument>
+        <Outlet />
+      </RootDocument>
+    </QueryClientProvider>
   );
 }
 function RootDocument({ children }: { children: Solid.JSX.Element }) {
@@ -128,10 +140,7 @@ function RootDocument({ children }: { children: Solid.JSX.Element }) {
       </head>
       <body>
         <HeadContent />
-
         <NavBar />
-        <div class="h-19"></div>
-        <hr />
         {children}
         <TanStackRouterDevtools position="bottom-right" />
         <Scripts />

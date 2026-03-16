@@ -6,24 +6,31 @@ import viteSolid from "vite-plugin-solid";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-   server: {
-      port: 3000,
-   },
-   plugins: [
-      {
-         // Workaround for https://github.com/solidjs/vite-plugin-solid/issues/232
-         name: "remove-ssr-external",
-         configResolved(config: any) {
-            if (config.environments.ssr)
-               config.environments.ssr.resolve.external = [];
-         },
+  resolve: {
+    tsconfigPaths: true,
+  },
+  server: {
+    port: 3000,
+  },
+  // resolve: {
+  //   alias: {
+  //     // Leitet JSX-Dev-Runtime auf Solid's Runtime um
+  //     "solid-js/jsx-dev-runtime": "solid-js/jsx-runtime",
+  //   },
+  // },
+  plugins: [
+    {
+      // Workaround for https://github.com/solidjs/vite-plugin-solid/issues/232
+      name: "remove-ssr-external",
+      configResolved(config: any) {
+        if (config.environments.ssr)
+          config.environments.ssr.resolve.external = [];
       },
-      tailwindcss(),
-      tsConfigPaths({
-         projects: ["./tsconfig.json"],
-      }),
-      cloudflare({ viteEnvironment: { name: "ssr" } }),
-      tanstackStart(),
-      viteSolid({ ssr: true }),
-   ] as PluginOption[],
+    },
+    tailwindcss(),
+
+    cloudflare({ viteEnvironment: { name: "ssr" } }),
+    tanstackStart(),
+    viteSolid({ ssr: true }),
+  ] as PluginOption[],
 });

@@ -1,51 +1,27 @@
-import { createFileRoute, redirect } from "@tanstack/solid-router";
-import { createResource, Suspense } from "solid-js";
-
-// export const Route = createFileRoute("/login")({
-//    beforeLoad: ({ context }) => {
-//       // Redirect if already authenticated
-//       if (context.session) {
-//          throw redirect({ to: "/" });
-//       }
-//    },
-//    component: Login,
-// });
-
-async function getCsrfToken(): Promise<string> {
-   const res = await fetch("/api/auth/csrf");
-   const data = await res.json();
-   return data.csrfToken;
-}
+import { authClient } from "~/lib/auth/auth-client"; // Dein Better-Auth Client
 
 export const KeycloakLogin = () => {
-   const [csrfToken] = createResource(getCsrfToken);
+  const handleLogin = async () => {
+    await authClient.signIn.social({
+      provider: "keycloak",
+      callbackURL: "/", // Wohin nach erfolgreichem Login?
+    });
+  };
 
-   return (
-      <div class="max-w-md mx-auto mt-10">
-         <h1 class="text-2xl font-bold mb-6 text-center">Sign In</h1>
-
-         <div class="space-y-4 ">
-            <Suspense fallback={<div class="text-center">Loading...</div>}>
-               <form action="/api/auth/signin/keycloak" method="post">
-                  <input
-                     type="hidden"
-                     name="csrfToken"
-                     value={csrfToken() ?? ""}
-                  />
-                  <input type="hidden" name="callbackUrl" value="/" />
-                  <button
-                     type="submit"
-                     class="w-full flex items-center justify-center gap-3 px-4 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors cursor-pointer"
-                  >
-                     Sign In
-                  </button>
-               </form>
-            </Suspense>
-
-            <p class="text-center text-sm text-gray-300 mt-4">
-               You'll be redirected to Keycloak to complete the sign-in process.
-            </p>
-         </div>
+  return (
+    <div class="mx-auto mt-10 max-w-md">
+      <h1 class="mb-6 text-center text-2xl font-bold">Sign In</h1>
+      <div class="space-y-4">
+        <button
+          onClick={handleLogin}
+          class="flex w-full cursor-pointer items-center justify-center gap-3 rounded-lg bg-gray-800 px-4 py-3 text-white transition-colors hover:bg-gray-900"
+        >
+          Sign In with Keycloak
+        </button>
+        <p class="mt-4 text-center text-sm text-gray-300">
+          You'll be redirected to Keycloak to complete the sign-in process.
+        </p>
       </div>
-   );
-}
+    </div>
+  );
+};

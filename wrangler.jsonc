@@ -4,6 +4,7 @@
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/solid-start/server-entry",
+  "assets": { "directory": "./public", "binding": "ASSETS" },
   "vars": {
     "AUTH_KEYCLOAK_ID": "18d43b5b-1c11-4638-816a-17299381b0f2",
     "AUTH_KEYCLOAK_ISSUER": "https://auth.golden-apple-research.org/realms/staging",
@@ -30,4 +31,19 @@
       "destinations": ["grafana-logs"],
     },
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "golden-apple-db",
+      "database_id": "c65ab69a-c427-48dc-af0b-2ad18da5bdde",
+      "migrations_dir": "drizzle",
+    },
+  ],
+  "r2_buckets": [
+    {
+      "bucket_name": "audioquotes",
+      "binding": "AUDIO_QUOTES",
+      "remote": true,
+    },
+  ],
 }

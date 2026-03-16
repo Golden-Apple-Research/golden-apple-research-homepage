@@ -1,18 +1,34 @@
-import { createFileRoute } from '@tanstack/solid-router'
-import { StartAuthJS } from 'start-authjs'
-import { authConfig } from '~/utils/auth'
+// ~/api/auth/$.ts
+import { createFileRoute } from "@tanstack/solid-router";
+import { getAuth } from "~/utils/betterAuth"; // Factory importieren
 
-/**
- * Auth.js API route handler
- * Handles all auth routes: /api/auth/*
- */
-const { GET, POST } = StartAuthJS(authConfig)
+// Definiere deine Env-Vars für TypeScript
+interface Env {
+  POSTGRES_URL: string;
+  // andere vars...
+}
 
-export const Route = createFileRoute('/api/auth/$')({
+export const Route = createFileRoute("/api/auth/$")({
   server: {
     handlers: {
-      GET: ({ request }) => GET({ request, response: new Response() }),
-      POST: ({ request }) => POST({ request, response: new Response() }),
+      GET: async ({ request }) => {
+        // In Cloudflare Workers/Vite Plugin bekommst du env oft über globalThis oder event.
+        // Mit @cloudflare/vite-plugin ist process.env oft gemapped.
+        // Wenn du wrangler.toml nutzt, sind die Vars oft direkt via process.env verfügbar.
+
+        const env: Env = {
+          POSTGRES_URL: process.env.POSTGRES_URL!,
+          // ... hole hier ggf. andere Variablen
+        };
+
+        const auth = getAuth(env); // Instanziiere Auth mit DB pro Request
+        return auth.handler(request);
+      },
+      POST: async ({ request }) => {
+        const env: Env = { POSTGRES_URL: process.env.POSTGRES_URL! };
+        const auth = getAuth(env);
+        return auth.handler(request);
+      },
     },
   },
-})
+});

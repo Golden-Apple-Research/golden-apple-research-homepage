@@ -12,7 +12,8 @@
     "cf-typegen": "wrangler types",
     "postinstall": "npm run cf-typegen",
     "start-db": "podman run  -p 5432:5432 -e POSTGRES_PASSWORD=password -v pgtest:/var/lib/postgresql/data --rm postgres:alpine",
-    "studio": "pnpm drizzle-kit studio"
+    "studio": "pnpm drizzle-kit studio",
+    "build:cloudflare": "pnpm drizzle-kit push --url $POSTGRES_DIRECT_URL --dialect postgresql --schema src/lib/db/schema.ts --verbose && pnpm build"
   },
   "dependencies": {
     "@auth/core": "^0.41.1",

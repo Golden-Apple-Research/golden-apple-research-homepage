@@ -1,32 +1,34 @@
-name: Migrate Database
+# name: Migrate Database
+#
+# Github unterstuetzt nur ipv4, supabase nur ipv6 ausser man kauft addon... also halt db migration ueber cloudflare...
+#
+# on:
+#   push:
+#     branches:
+#       - main
 
-on:
-  push:
-    branches:
-      - main
+# jobs:
+#   migrate:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Repo
+#         uses: actions/checkout@v4
 
-jobs:
-  migrate:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+#       - name: Setup pnpm
+#         uses: pnpm/action-setup@v4
+#         # with:
+#         #   version: 10.24.0 # Deine Version aus package.json [2]
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        # with:
-        #   version: 10.24.0 # Deine Version aus package.json [2]
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: "25.7"
+#           cache: "pnpm"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "25.7"
-          cache: "pnpm"
+#       - name: Install Dependencies
+#         run: pnpm install --frozen-lockfile
 
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Run Drizzle Migration
-        run: pnpm drizzle-kit push --url $POSTGRES_URL --dialect postgresql --schema src/lib/db/schema.ts --verbose
-        env:
-          POSTGRES_URL: ${{ secrets.DATABASE_URL }}
+#       - name: Run Drizzle Migration
+#         run: pnpm drizzle-kit push --url $POSTGRES_URL --dialect postgresql --schema src/lib/db/schema.ts --verbose
+#         env:
+#           POSTGRES_URL: ${{ secrets.DATABASE_URL }}
